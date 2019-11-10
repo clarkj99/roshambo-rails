@@ -4,4 +4,5 @@ class Player < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :moves
+  has_many :battles, through: :moves
 end
