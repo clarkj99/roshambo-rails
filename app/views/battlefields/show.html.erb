@@ -1,0 +1,9 @@
+<h1 class="title"><%= @battlefield.name %></h1>
+
+<h2 class="heading">Battles</h2>
+
+<ul>
+ <% @battlefield.battles.each do |b| %>
+<li>[<%= b.moves[0].player.email %> - <%= b.moves[0].symbol %>] vs [<%= b.moves[1].player.email %> - <%= b.moves[1].symbol %>]</li>
+ <% end %>
+</ul>
