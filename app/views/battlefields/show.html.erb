@@ -1,9 +1,26 @@
-<h1 class="title"><%= @battlefield.name %></h1>
+<h1 class="title is-1"><%= @battlefield.name %></h1>
 
-<h2 class="heading">Battles</h2>
+<div class="box"><h2 class="title is-2">Stats</h2>
+<p><strong>Number of battles:</strong> <%= @battlefield.battles.count %></p>
+<p><strong>Max Level:</strong> <%= @battlefield.max_level %></p>
 
-<ul>
- <% @battlefield.battles.each do |b| %>
-<li>[<%= b.moves[0].player.email %> - <%= b.moves[0].symbol %>] vs [<%= b.moves[1].player.email %> - <%= b.moves[1].symbol %>]</li>
- <% end %>
-</ul>
+</div>
+<div class="box">
+    <h2 class="title is-2">Battles</h2>
+    <div class="table-container is-bordered">
+        <table class="table is-striped is-fullwidth">
+        <% if @battlefield.battles.any? %>
+            <% @battlefield.battles.each do |b| %>
+                <tr>
+                    <td><span class="icon <%= symbol_color(plyr: b.moves[0].symbol, opnt: b.moves[1].symbol) %>"> 
+  <i class="fas fa-hand-<%= b.moves[0].symbol %>"></i>
+</span> <%= b.moves[0].player.email %> </td>
+                    <td><span class="icon <%= symbol_color(plyr: b.moves[1].symbol, opnt: b.moves[0].symbol) %>">
+  <i class="fas fa-hand-<%= b.moves[1].symbol %>"></i>
+</span><%= b.moves[1].player.email %></td>
+                </tr>
+            <% end %>
+            <% end %>
+        </table>
+    </div>
+</div>

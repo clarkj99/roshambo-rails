@@ -15,7 +15,6 @@ bf3 = Battlefield.create(name: "Babbage")
 
 b1 = Battle.create(evolution_level: 0, battlefield: bf1)
 b2 = Battle.create(evolution_level: 0, battlefield: bf1)
-b3 = Battle.create(evolution_level: 0, battlefield: bf2)
 
 m1 = Move.create(symbol: "rock", player: p1, battle: b1)
 m2 = Move.create(symbol: "paper", player: p2, battle: b1)

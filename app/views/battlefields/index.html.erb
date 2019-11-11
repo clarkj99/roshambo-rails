@@ -1,6 +1,8 @@
 <h1 class = "title">Welcome to the Battle</h1>
+<div class="box">
 <ul>
 <% @battlefields.each do |battlefield| %>
   <li><%= link_to battlefield.name, battlefield_path(battlefield) %></li>
 <% end %>
 </ul>
+</div>
