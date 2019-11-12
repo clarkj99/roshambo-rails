@@ -1,13 +1,24 @@
 <h1 class="title is-1">Create Player</h1>
-<%= form_for :player, class: "form",url: players_path do |f| %>
-<div> 
-  Username: <%= f.text_field :username %></div>
-  <div>Display Name: <%= f.text_field :display_name %></div>
-  <div>
-  Password: <%= f.password_field :password %></div>
-  <div>
-  Password Confirmation: <%= f.password_field :password_confirmation %></div>
-  <div>
-  <%= f.submit "Submit" %></div>
-  
-<% end %>
+<div class="box">
+  <%= form_for :player, class: "form",url: players_path do |f| %>
+    <div class="field">
+      <%= f.label :username, "User Name:" ,class:"label"%>
+      <%= f.text_field :username, class:"input" %>
+    </div>
+    <div class="field">
+      <%= f.label :display_name, "Display Name:" ,class:"label"%>
+      <%= f.text_field :display_name, class:"input" %>
+    </div>
+    <div class="field">
+      <%= f.label :password, "Password:" ,class:"label"%>
+      <%= f.password_field :password, class:"input" %>
+    </div>
+    <div class="field">
+      <%= f.label :password_confirmation, "Password Confirmation" ,class:"label"%>
+      <%= f.password_field :password_confirmation, class:"input" %>
+    </div>
+    <div class="field">
+      <%= f.submit "Submit", class:"button" %>
+    </div>
+  <% end %>
+</div>

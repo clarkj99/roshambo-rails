@@ -1,0 +1,14 @@
+<h1 class="title is-1">Edit Player</h1>
+<div class="box">
+  <%= form_for :player, class: "form",url: player_path, method: :patch do |f| %>
+    
+    <div class="field">
+      <%= f.label :display_name, "Display Name:" ,class:"label"%>
+      <%= f.text_field :display_name, class:"input" %>
+    </div>
+    
+    <div class="field">
+      <%= f.submit "Submit", class:"button" %>
+    </div>
+  <% end %>
+</div>

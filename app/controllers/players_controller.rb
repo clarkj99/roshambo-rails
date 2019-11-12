@@ -1,12 +1,15 @@
 class PlayersController < ApplicationController
-  before_action :require_login
-  skip_before_action :require_login, only: [:new, :create]
+  before_action :require_login, only: [:destroy]
+
+  def index
+    @players = Player.all
+  end
 
   def new
   end
 
   def show
-    @player = Player.find_by(id: session[:player_id])
+    @player = Player.find_by(id: params[:id])
   end
 
   def create
@@ -14,10 +17,37 @@ class PlayersController < ApplicationController
     if @player.valid?
       @player.save
       session[:player_id] = @player.id
+      flash[:success] = "Player created successfully!"
       redirect_to players_path
     else
-      redirect_to players_new_path
+      # flash[:danger] = "Creation failed!"
+      flash[:danger] = @player.errors.full_messages.first
+      redirect_to new_player_path
     end
+  end
+
+  def edit
+    @player = Player.find_by(id: params[:id])
+  end
+
+  def update
+    @player = Player.find_by(id: params[:id])
+    @player.update(player_params)
+    if @player.valid?
+      flash[:success] = "Update Player successful!"
+      redirect_to @player
+    else
+      flash[:danger] = @player.errors.full_messages.first
+      redirect_to edit_player_path
+    end
+  end
+
+  def destroy
+    @player = Player.find_by(id: params[:id])
+    session.delete(:player_id)
+    @player.destroy
+    flash[:success] = "Player destroyed!"
+    redirect_to players_path
   end
 
   private

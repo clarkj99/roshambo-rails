@@ -4,4 +4,7 @@ $(document).on('turbolinks:load', function () {
     $(".navbar-burger").toggleClass("is-active");
     $(".navbar-menu").toggleClass("is-active");
   });
+  $(".delete").click(function () {
+    $(".notification").remove();
+  });
 });

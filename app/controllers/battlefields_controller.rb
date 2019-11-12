@@ -1,4 +1,6 @@
 class BattlefieldsController < ApplicationController
+  before_action :require_login, only: [:new, :create]
+
   before_action :find_battlefield, only: [:show, :edit, :delete, :update]
 
   def index
@@ -17,6 +19,7 @@ class BattlefieldsController < ApplicationController
 
     if @battlefield.valid?
       @battlefield.save
+      flash[:success] = "Battlefield created!"
       redirect_to battlefields_path
     else
       render :new
@@ -28,14 +31,18 @@ class BattlefieldsController < ApplicationController
 
   def update
     if @battlefield.update(battlefield_params)
+      flash[:success] = "Update complete"
       redirect_to battlefield_path(@battlefield)
     else
+      flash[:danger] = "Update failed"
       render :edit
     end
   end
 
   def destroy
     @battlefield.destroy
+    flash[:success] = "Battlefield destroyed!"
+    redirect_to battlefields_path
   end
 
   private

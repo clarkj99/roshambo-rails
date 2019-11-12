@@ -1,1 +1,9 @@
-<h1><%= @player.email %></h1>
+<h1 class="title is-1"><%= @player.display_name %></h1>
+<div class="box">
+  <p><strong>User Name: </strong><%= @player.username %></p>
+  <% if current_player == @player %>
+    <%= link_to "Edit", edit_player_path(@player), class:"button is-primary"%>
+    <%= link_to "Delete", player_path(@player), method: :delete, data: { confirm: "Are you sure?" }, class: 'button is-danger' %>
+  <% end %>
+</div>
+<h2 class="title is-2">Battles</h2>

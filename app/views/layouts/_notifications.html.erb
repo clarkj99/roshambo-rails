@@ -1,0 +1,20 @@
+<% if flash.any? %>
+  <% if flash[:success] %>
+    <div class="notification is-success">
+      <button class="delete"></button>
+      <p class="alert"><%= flash[:success] %></p>
+    </div>
+  <% end %>
+  <% if flash[:warning] %>
+    <div class="notification is-success">
+      <button class="delete"></button>
+      <p class="alert"><%= flash[:warning] %></p>
+    </div>
+  <% end %>
+  <% if flash[:danger] %>
+    <div class="notification is-danger">
+      <button class="delete"></button>
+      <p class="alert"><%= flash[:danger]%></p>
+    </div>
+  <% end %>
+<% end %>

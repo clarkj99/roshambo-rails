@@ -1,0 +1,6 @@
+<h1 class="title is-1">Players</h1>
+<div class="box">
+<% @players.each do |p| %>
+  <p><span class="icon"><i class="<%= level_icon(level:p.current_level) %>"></i></span><%= link_to p.display_name, player_path(p) %></p>
+<% end %>
+</div>

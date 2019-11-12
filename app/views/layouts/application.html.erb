@@ -11,19 +11,10 @@
     <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/nuclear/bulmaswatch.min.css">
   </head>
   <body>
-      <%= render 'layouts/nav' %>
-    <% if flash[:notice] %>
-      <section class="section">
-        <div class="container">
-          <p class="alert alert-success"><%= flash[:notice] %></p>
-        <% end %>
-        <% if flash[:errors] %>
-          <p class="alert alert-danger"><%= flash[:errors]%></p>
-        </div>
-      </section>
-    <% end %>
+    <%= render 'layouts/nav' %>
     <section class="section">
-      <div class="container">
+    <%= render 'layouts/notifications' %>
+      <div class="content">
         <%= yield %>
       </div>
     </section>
