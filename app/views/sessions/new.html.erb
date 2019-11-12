@@ -1,0 +1,7 @@
+<h1>Log In</h1>
+
+<%= form_for :player, class: "form",url: sessions_create_path do |f| %>
+  Username: <%= f.text_field :username %> <br                   >
+  Password: <%= f.password_field :password %> <br>
+  <%= f.submit "Submit" %>
+<% end %>

@@ -5,30 +5,27 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+    <script src="https://kit.fontawesome.com/87fdee6cb9.js" crossorigin="anonymous"></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <script src="https://kit.fontawesome.com/87fdee6cb9.js" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/nuclear/bulmaswatch.min.css">
   </head>
-
   <body>
-<%= render 'layouts/nav' %>
-  <% if notice %>   
-  <section class="section">
-    <div class="container">
-  <p class="alert alert-success"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-    </div>
-  </section>
-<% end %>
-
-   <section class="section">
-    <div class="container">
-    <%= yield %>
+      <%= render 'layouts/nav' %>
+    <% if flash[:notice] %>
+      <section class="section">
+        <div class="container">
+          <p class="alert alert-success"><%= flash[:notice] %></p>
+        <% end %>
+        <% if flash[:errors] %>
+          <p class="alert alert-danger"><%= flash[:errors]%></p>
         </div>
-  </section>
+      </section>
+    <% end %>
+    <section class="section">
+      <div class="container">
+        <%= yield %>
+      </div>
+    </section>
   </body>
 </html>

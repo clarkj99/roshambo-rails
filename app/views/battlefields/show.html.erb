@@ -1,25 +1,30 @@
-<h1 class="title is-1"><%= @battlefield.name %></h1>
-
-<div class="box"><h2 class="title is-2">Stats</h2>
-<p><strong>Number of battles:</strong> <%= @battlefield.battles.count %></p>
-<p><strong>Max Level:</strong> <%= @battlefield.max_level %></p>
-
-</div>
+<h1 class="title is-1"><span class="icon"><i class="fas fa-tree"></i> </span> <%= @battlefield.name %></h1>
 <div class="box">
-      
-        <table class="table is-striped is-fullwidth">
-        <% if @battlefield.battles.any? %>
-            <% @battlefield.battles.each do |b| %>
-                <tr>
-                    <td><span class="icon <%= symbol_color(plyr: b.moves[0].symbol, opnt: b.moves[1].symbol) %>"> 
-  <i class="fas fa-hand-<%= b.moves[0].symbol %>"></i>
-</span> <%= b.moves[0].player.email %> </td>
-                    <td><span class="icon <%= symbol_color(plyr: b.moves[1].symbol, opnt: b.moves[0].symbol) %>">
-  <i class="fas fa-hand-<%= b.moves[1].symbol %>"></i>
-</span><%= b.moves[1].player.email %></td>
-                </tr>
-            <% end %>
-            <% end %>
-        </table>
-    </div>
+  <h2 class="title is-3"><span class="icon"><i class="fas fa-poll"></i></span> Stats</h2>
+  <p><strong>Number of battles:</strong> <%= @battlefield.battles.count %></p>
+  <p><strong>Max Level:</strong> <%= @battlefield.max_level %></p>
+</div>
+<div class="box has-background-light">
+  <h2 class="title is-3 has-text-dark"><span class="icon"><i class="fas fa-users"></i></span> Battles</h2>
+  <% if @battlefield.battles.any? %>
+    <% @battlefield.battles.each do |b| %>
+      <div class="columns box">
+      <div class="column has-text-centered">
+      <p>Level: <%= b.evolution_level %></p>
+      <p><%= b.created_at.strftime("%d/%m/%Y %I:%M:%S %p") %></p>
+
+      </div>
+        <div class="column has-text-centered">
+          <span class="icon fa-3x <%= symbol_color(plyr: b.moves[0].symbol, opnt: b.moves[1].symbol) %>">
+            <i class="fas fa-hand-<%= b.moves[0].symbol %>"></i>
+          </span> 
+          <p><%= b.moves[0].player.display_name %> </div></p>
+        <div class="column has-text-centered"><span class="icon fa-3x <%= symbol_color(plyr: b.moves[1].symbol, opnt: b.moves[0].symbol) %>">
+            <i class="fas fa-hand-<%= b.moves[1].symbol %>"></i>
+          </span> 
+          <p><%= b.moves[1].player.display_name %></p>    
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 </div>

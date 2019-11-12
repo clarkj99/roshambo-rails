@@ -5,9 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-p1 = Player.create(email: "person1@email.com", password: "pword1", current_level: 0)
-p2 = Player.create(email: "person2@email.com", password: "pword2", current_level: 1)
-p3 = Player.create(email: "person3@email.com", password: "pword3", current_level: 1)
+p1 = Player.create(username: "Sheldon", password: "pword1", current_level: 0, display_name: "The Flash")
+p2 = Player.create(username: "Leonard", password: "pword2", current_level: 1, display_name: "Cheescake Factory")
+p3 = Player.create(username: "RajK", password: "pword3", current_level: 1, display_name: "Ladies Man")
 
 bf1 = Battlefield.create(name: "Turin")
 bf2 = Battlefield.create(name: "Borg")

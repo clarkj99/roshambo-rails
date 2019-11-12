@@ -1,0 +1,13 @@
+<h1 class="title is-1">Create Player</h1>
+<%= form_for :player, class: "form",url: players_path do |f| %>
+<div> 
+  Username: <%= f.text_field :username %></div>
+  <div>Display Name: <%= f.text_field :display_name %></div>
+  <div>
+  Password: <%= f.password_field :password %></div>
+  <div>
+  Password Confirmation: <%= f.password_field :password_confirmation %></div>
+  <div>
+  <%= f.submit "Submit" %></div>
+  
+<% end %>
