@@ -4,7 +4,7 @@ class BattlesController < ApplicationController
   before_action :require_login
 
   def index
-    @battles = @battlefield.battles.select { |battle| battle.moves.count == 1 && battle.evolution_level == current_player.current_level && }
+    @battles = @battlefield.battles.select { |battle| battle.moves.count == 1 && battle.evolution_level == current_player.current_level && battle.moves[0].player != current_player }
     @challenge_battle = battle_in_progress
   end
 
@@ -33,10 +33,16 @@ class BattlesController < ApplicationController
 
   def update
     @move = @battle.moves.build(symbol: battle_params[:move], player: current_player)
-
+    @move.save
     if @move.valid?
-      @move.save
-      flash[:success] = "Move was saved!"
+      @winner = winning_player(@battle)
+      if @winner
+        @winner.current_level += 1
+        @winner.save
+        flash[:success] = "You Won!"
+      else
+        flash[:warning] = "You Lost!"
+      end
     else
       flash[:danger] = @battle.errors.full_messages.first
     end

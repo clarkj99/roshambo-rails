@@ -24,10 +24,32 @@ class ApplicationController < ActionController::Base
   end
 
   def symbol_color(plyr:, opnt:)
-    if ((plyr == "rock") && (opnt == "scissors")) || ((plyr == "paper") && (opnt == "rock")) || ((plyr == "scissors") && (opnt == "paper"))
+
+    # if ((plyr == "rock") && (opnt == "scissors")) || ((plyr == "paper") && (opnt == "rock")) || ((plyr == "scissors") && (opnt == "paper"))
+    if winning_symbol?(plyr, opnt)
       "has-text-success"
     else
-      ""
+      "has-text-danger"
+    end
+  end
+
+  def winning_symbol?(s1, s2)
+    if ((s1 == "rock") && (s2 == "scissors")) ||
+       ((s1 == "paper") && (s2 == "rock")) ||
+       ((s1 == "scissors") && (s2 == "paper"))
+      true
+    else
+      false
+    end
+  end
+
+  def winning_player(battle)
+    if winning_symbol?(battle.moves[0].symbol, battle.moves[1].symbol)
+      battle.moves[0].player
+    elsif winning_symbol?(battle.moves[1].symbol, battle.moves[0].symbol)
+      battle.moves[1].player
+    else
+      nil
     end
   end
 
