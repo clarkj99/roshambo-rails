@@ -28,7 +28,7 @@ class BattlesController < ApplicationController
     else
       flash[:danger] = @battle.errors.full_messages.first
     end
-    redirect_to battlefield_battles_path(@battlefield)
+    redirect_to battlefield_path(@battlefield)
   end
 
   def update
@@ -39,14 +39,16 @@ class BattlesController < ApplicationController
       if @winner
         @winner.current_level += 1
         @winner.save
-        flash[:success] = "You Won!"
-      else
-        flash[:warning] = "You Lost!"
+        if @winner == current_player
+          flash[:success] = "You Won!"
+        else
+          flash[:warning] = "You Didn't Win!"
+        end
       end
     else
       flash[:danger] = @battle.errors.full_messages.first
     end
-    redirect_to battlefield_battles_path(@battlefield)
+    redirect_to battlefield_path(@battlefield)
   end
 
   def destroy
