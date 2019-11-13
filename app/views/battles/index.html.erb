@@ -1,10 +1,22 @@
 <h1 class="title is-1">Battle! Battle! Battle!</h1>
-
-<div class="columns">
-<div class="column"><h2 class="title is-2">Challengers!</h2>
-    <% @battles.each do %>
-
+<div class="columns has-text-centered">
+  <div class="column">
+    <h2 class="title is-2">Challengers!</h2>
+    <% @battles.each do |b| %>
+      <p>Level <%= b.evolution_level  %></p>
+      <p>Created <%= b.created_at  %></p>
+      <p>Moves <%= b.moves.count %></p>
+      <p>Moves <%= b.moves[0].symbol %></p>
     <% end %>
+  </div>
+  <div class="column">
+    <h2 class="title is-2">Start a Challenge</h2>
+    <div class="level">
+      <% symbols_list.each do |symbol| %>
+        <div class="level-item">
+          <%= button_to symbol, battlefield_battles_path, method: :post, class:"button is-large is-primary", params:{move: symbol} %>
+        </div>
+      <% end  %>
     </div>
-<div class="column"><%= link_to "Start a Challenge!", new_battle_path,class:"button is-large is-link" %></div>
+  </div>
 </div>

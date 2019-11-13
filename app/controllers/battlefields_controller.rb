@@ -45,6 +45,12 @@ class BattlefieldsController < ApplicationController
     redirect_to battlefields_path
   end
 
+  def battles
+    @battlefield = Battlefield.find(params[:battlefield_id])
+    @open_battles = @battlefield.battles.select { |battle| battle.moves.count == 1 }
+    render "battles/index"
+  end
+
   private
 
   def find_battlefield

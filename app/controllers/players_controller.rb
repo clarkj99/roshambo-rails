@@ -14,6 +14,7 @@ class PlayersController < ApplicationController
 
   def create
     @player = Player.new(player_params)
+    @player.current_level = 0
     if @player.valid?
       @player.save
       session[:player_id] = @player.id

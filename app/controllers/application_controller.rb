@@ -1,14 +1,16 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_player, :symbol_color, :level_icon
+  helper_method :current_player, :symbol_color, :level_icon, :symbols_list
 
   def current_player
     @current_player ||= Player.find_by(id: session[:player_id]) if session[:player_id]
   end
 
   def require_login
-    flash[:warning] = "Login required!"
-    redirect_to login_path unless current_player
+    if !current_player
+      flash[:warning] = "Login required!"
+      redirect_to login_path unless current_player
+    end
   end
 
   def symbol_color(plyr:, opnt:)
@@ -22,5 +24,10 @@ class ApplicationController < ActionController::Base
   def level_icon(level: "0")
     icons = ["fas fa-egg", "fas fa-drumstick-bite", "fas fa-dragon", "fas fa-walking", "fas fa-dollar-sign"]
     icons[level.to_i]
+  end
+
+  def symbols_list
+    ["rock", "paper", "scissors"]
+    # ["rock", "paper", "scissors", "lizard", "spock"]
   end
 end
