@@ -1,22 +1,42 @@
 <h1 class="title is-1">Battle! Battle! Battle!</h1>
 <div class="columns has-text-centered">
   <div class="column">
-    <h2 class="title is-2">Challengers!</h2>
+    <h2 class="title is-3"><%= raw level_icon_span(level: current_player.current_level) %> </h2>
+    <% if @battles.any? %>
     <% @battles.each do |b| %>
-      <p>Level <%= b.evolution_level  %></p>
-      <p>Created <%= b.created_at  %></p>
-      <p>Moves <%= b.moves.count %></p>
-      <p>Moves <%= b.moves[0].symbol %></p>
+      <div class="box">
+        <%= raw move_icon_span(plyr:b.moves[0], opnt: b.moves[0]) %>
+        <p><%= b.moves[0].player.display_name %></p>
+        <p><%= formatted_date(b.created_at)  %></p>
+        <div class="level">
+                <% symbols_list.each do |symbol| %>
+          <div class="level-item">
+            <%= button_to symbol, battlefield_battle_path(id:b.id), method: :patch, class:"button is-large is-primary", params:{move: symbol} %>
+          </div>
+        <% end  %>
+        </div>
+      </div>
+    <% end %>
+    <% else %>
+<p class="is-info">No open challenges.</p>
     <% end %>
   </div>
   <div class="column">
     <h2 class="title is-2">Start a Challenge</h2>
     <div class="level">
-      <% symbols_list.each do |symbol| %>
-        <div class="level-item">
-          <%= button_to symbol, battlefield_battles_path, method: :post, class:"button is-large is-primary", params:{move: symbol} %>
-        </div>
-      <% end  %>
+      <% if @challenge_battle %>
+      <div class="box">
+      <h3 class="title is-3">Waiting...</h3>
+        <p><%= formatted_date(@challenge_battle.created_at)  %></p>
+        <p><%= raw move_icon_span(plyr:@challenge_battle.moves[0], opnt: @challenge_battle.moves[0]) %></p>
+      </div>
+        <% else %>
+        <% symbols_list.each do |symbol| %>
+          <div class="level-item">
+            <%= button_to symbol, battlefield_battles_path, method: :post, class:"button is-large is-primary", params:{move: symbol} %>
+          </div>
+        <% end  %>
+      <% end %>
     </div>
   </div>
 </div>

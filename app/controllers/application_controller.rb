@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_player, :symbol_color, :level_icon, :symbols_list
+  helper_method :current_player, :symbol_color, :level_icon, :symbols_list, :formatted_date, :level_icon_span, :move_icon_span
 
   def current_player
     @current_player ||= Player.find_by(id: session[:player_id]) if session[:player_id]
@@ -11,6 +11,16 @@ class ApplicationController < ActionController::Base
       flash[:warning] = "Login required!"
       redirect_to login_path unless current_player
     end
+  end
+
+  def battle_in_progress
+    # returns open battle for current player
+    Battle.all.find { |battle| battle.moves.count == 1 && battle.moves[0].player == current_player }
+  end
+
+  def all_battles_in_progress
+    #returns all open battles
+    Battle.all.select { |battle| battle.moves.count == 1 }
   end
 
   def symbol_color(plyr:, opnt:)
@@ -26,8 +36,22 @@ class ApplicationController < ActionController::Base
     icons[level.to_i]
   end
 
+  def level_icon_span(level: "0")
+    "<span class='icon fa-2x'><i class= '#{level_icon(level: level)}'></i></span>"
+  end
+
+  def move_icon_span(plyr:, opnt:)
+    "<span class='icon fa-2x #{symbol_color(plyr: plyr.symbol, opnt: opnt.symbol)}'>
+            <i class='fas fa-hand-#{plyr.symbol}'></i>
+          </span> "
+  end
+
   def symbols_list
     ["rock", "paper", "scissors"]
     # ["rock", "paper", "scissors", "lizard", "spock"]
+  end
+
+  def formatted_date(date)
+    date.strftime("%m/%d/%Y %I:%M:%S %p")
   end
 end

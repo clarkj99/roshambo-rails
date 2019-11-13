@@ -8,6 +8,8 @@ class BattlefieldsController < ApplicationController
   end
 
   def show
+    @battles = @battlefield.battles.select { |battle| battle.moves.count == 2 }
+    @all_challenge_battles = all_battles_in_progress
   end
 
   def new
