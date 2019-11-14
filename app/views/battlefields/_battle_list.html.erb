@@ -1,0 +1,22 @@
+  <h2 class="has-text-dark"><span class="icon"><i class="fas fa-users"></i></span> Battles</h2>
+  <% if @battles.any? %>
+    <% @battles.each do |b| %>
+      <div class="columns box">
+      <div class="column has-text-centered">
+       <%= raw level_icon_span(level: b.evolution_level) %>
+      <p><%= formatted_date(b.created_at) %></p>
+
+      </div>
+        <div class="column has-text-centered">
+        <%= raw move_icon_span(plyr:b.moves[0], opnt: b.moves[1]) %>
+          
+          <p><%= b.moves[0].player.display_name %> </div></p>
+        <div class="column has-text-centered">
+        <%= raw move_icon_span(plyr:b.moves[1], opnt: b.moves[0]) %>
+          <p><%= b.moves[1].player.display_name %></p>    
+        </div>
+      </div>
+    <% end %>
+    <% else %>
+    <p class="is-info">No battles.</p>
+  <% end %>

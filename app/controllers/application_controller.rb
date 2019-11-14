@@ -24,8 +24,6 @@ class ApplicationController < ActionController::Base
   end
 
   def symbol_color(plyr:, opnt:)
-
-    # if ((plyr == "rock") && (opnt == "scissors")) || ((plyr == "paper") && (opnt == "rock")) || ((plyr == "scissors") && (opnt == "paper"))
     if winning_symbol?(plyr, opnt)
       "has-text-success"
     else
@@ -70,7 +68,7 @@ class ApplicationController < ActionController::Base
 
   def symbols_list
     ["rock", "paper", "scissors"]
-    # ["rock", "paper", "scissors", "lizard", "spock"]
+    ["rock", "paper", "scissors", "lizard", "spock"]
   end
 
   def formatted_date(date)

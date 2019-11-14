@@ -1,9 +1,17 @@
-<h1 class="title is-1"><%= @player.display_name %></h1>
-<div class="box">
-  <p><strong>User Name: </strong><%= @player.username %></p>
-  <% if current_player == @player %>
-    <%= link_to "Edit", edit_player_path(@player), class:"button is-primary"%>
-    <%= link_to "Delete", player_path(@player), method: :delete, data: { confirm: "Are you sure?" }, class: 'button is-danger' %>
-  <% end %>
+<h1 class=""><%= @player.display_name %></h1>
+<div class="columns">
+  <div class="column">
+    <div class="content box">
+      <p><strong>User Name: </strong><%= @player.username %></p>
+      <% if current_player == @player %>
+        <%= link_to "Edit", edit_player_path(@player), class:"button is-primary"%>
+        <%= link_to "Delete", player_path(@player), method: :delete, data: { confirm: "Are you sure?" }, class: 'button is-danger' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="column">
+    <div id= "battle-msgs" class="box has-background-light">
+      <%= render "/battlefields/battle_list" %>
+    </div>
+  </div>
 </div>
-<h2 class="title is-2">Battles</h2>

@@ -5,6 +5,7 @@ class BattlefieldsController < ApplicationController
 
   def index
     @battlefields = Battlefield.all
+    @battles = Battle.all.select { |battle| battle.moves.count == 2 }
   end
 
   def show
@@ -24,6 +25,7 @@ class BattlefieldsController < ApplicationController
       flash[:success] = "Battlefield created!"
       redirect_to battlefields_path
     else
+      flash[:danger] = @battlefield.errors.full_messages[0]
       render :new
     end
   end

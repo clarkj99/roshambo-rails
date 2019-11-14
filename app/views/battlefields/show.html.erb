@@ -1,36 +1,19 @@
-<h1 class="title is-1"><span class="icon"><i class="fas fa-tree"></i> </span> <%= @battlefield.name %></h1>
-<div class="box">
+<h1 class=""><span class="icon"><i class="fas fa-tree"></i> </span> <%= @battlefield.name %></h1>
+<div class="content">
+  <%= link_to "Battle Now!", battlefield_battles_path(@battlefield), class:"button is-link is-large" %>
+</div>
 <div class="columns">
-<div class="column">
-  <h2 class="title is-3"><span class="icon"><i class="fas fa-poll"></i></span> Stats</h2>
-  <p><strong>Total Battles:</strong> <%= @battlefield.battles.count %></p>
-  <p><strong>Waiting Challenges:</strong> <%= @all_challenge_battles.count %></p>
-  <p><strong>Max Level:</strong> &nbsp;&nbsp;&nbsp;<%= raw level_icon_span(level:@battlefield.max_level) %></p>
+  <div class="column">
+    <div class="content box">
+      <h2 class=""><span class="icon"><i class="fas fa-poll"></i></span> Stats</h2>
+      <p><strong>Total Battles:</strong> <%= @battlefield.battles.count %></p>
+      <p><strong>Waiting Challenges:</strong> <%= @all_challenge_battles.count %></p>
+      <p><strong>Max Level:</strong> &nbsp;&nbsp;&nbsp;<%= raw level_icon_span(level:@battlefield.max_level) %></p>
+    </div>
   </div>
   <div class="column">
-  <%= link_to "Battle Now!", battlefield_battles_path(@battlefield), class:"button is-link is-large" %>
+    <div id= "battle-msgs" class="box has-background-light">
+      <%= render "battle_list" %>
+    </div>
   </div>
-  </div>
-</div>
-<div id= "battle-msgs" class="box has-background-light">
-  <h2 class="title is-3 has-text-dark"><span class="icon"><i class="fas fa-users"></i></span> Battles</h2>
-  <% if @battles.any? %>
-    <% @battles.each do |b| %>
-      <div class="columns box">
-      <div class="column has-text-centered">
-       <%= raw level_icon_span(level: b.evolution_level) %>
-      <p><%= formatted_date(b.created_at) %></p>
-
-      </div>
-        <div class="column has-text-centered">
-        <%= raw move_icon_span(plyr:b.moves[0], opnt: b.moves[1]) %>
-          
-          <p><%= b.moves[0].player.display_name %> </div></p>
-        <div class="column has-text-centered">
-        <%= raw move_icon_span(plyr:b.moves[1], opnt: b.moves[0]) %>
-          <p><%= b.moves[1].player.display_name %></p>    
-        </div>
-      </div>
-    <% end %>
-  <% end %>
 </div>

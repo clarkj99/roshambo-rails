@@ -12,8 +12,11 @@
   </head>
   <body>
     <%= render 'layouts/nav' %>
-    <section class="section">
-    <%= render 'layouts/notifications' %>
+      <section class="section">
+      <% if current_player %>
+        <div class="has-text-weight-bold">Player: <%= current_player.display_name %></div>
+      <% end %>
+      <%= render 'layouts/notifications' %>
       <div class="content">
         <%= yield %>
       </div>

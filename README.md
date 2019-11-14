@@ -1,24 +1,89 @@
-# README
+# Ruby on Rails Game
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Title: Roshambo Evolution
 
-Things you may want to cover:
+## Components: 
+- ActionCable + JQuery
+- Bulma
+- Ruby on Rails
 
-* Ruby version
 
-* System dependencies
+## Models:
+### Player	
+- Userid
+- Display Name
+- Current Level
+- Methods
+    - players#new 
+    - players#create
+    - players#show
+    - players#index
 
-* Configuration
 
-* Database creation
+### Battle	
+- EvolutionLevel
+- battlefield_id
+- updated_at
+- Methods
+    - battles#new
+    - battles#create
+    - battles#show	
 
-* Database initialization
+### Move	
+- player_id
+- battle_id
+- Symbol	
+- Methods
+    - moves#create
+    - moves#show
 
-* How to run the test suite
+### Battlefield	
+- Name	
+- Methods
+	- battlefields#new
+    - battlefields#create
+    - battlefields#show	
 
-* Services (job queues, cache servers, search engines, etc.)
+### Favorite
+- player_id
+- favorite_player_id
+- Methods
 
-* Deployment instructions
+### Associations
+- Battlefield has many battles
+- Player has many moves
+- Player has many favorites
+- Favorite_Player has many favorites
+- Battle has many moves
+- Battle has many players through moves
+- Battle belongs_to Battlefield
+- Player has many battles through moves
+- Player has many favorite_players through favorites
+- Favorite Player has many players through favorites
 
-* ...
+## Story:
+- User  must create userid
+- User either chooses a battlefield or creates one
+- User waits on battlefield until there’s an opponent
+- User challenges opponent
+- Users battle (choose a symbol)
+- If win, level up.
+- User can add / delete favorites
+- Repeat
+
+
+## Rules
+Progression:  Egg, Chicken, Dragon, Human, Money
+
+* Scissors cuts paper, 
+* paper covers rock, 
+* rock crushes lizard, 
+* lizard poisons Spock, 
+* Spock smashes scissors, 
+* scissors decapitates lizard, 
+* lizard eats paper, 
+* paper disproves Spock, 
+* Spock vaporizes rock, 
+* and as it always has, rock crushes scissors.
+
+￼

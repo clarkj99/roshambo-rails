@@ -10,6 +10,7 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find_by(id: params[:id])
+    @battles = @player.battles.select { |battle| battle.moves.count == 2 }
   end
 
   def create

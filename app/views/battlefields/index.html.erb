@@ -1,11 +1,21 @@
-<h1 class = "title is-1">Welcome to the Battle</h1>
+<h1 class>Welcome to the Battle</h1>
 <div class="content">
   <%= link_to "Create a Battlefield!", new_battlefield_path, class:"button is-large is-link" %>
 </div>
-<div class="content box">
-  <ul>
-    <% @battlefields.each do |battlefield| %>
-      <li><%= link_to battlefield.name, battlefield_path(battlefield) %></li>
-    <% end %>
-  </ul>
+<div class="columns">
+  <div class="column">
+    <div class="content box">
+      <h2><span class="icon"><i class="fas fa-tree"></i> </span>Battlefields</h2>
+      <ul>
+        <% @battlefields.each do |battlefield| %>
+          <li><%= link_to battlefield.name, battlefield_path(battlefield) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="column">
+    <div id= "battle-msgs" class="box has-background-light">
+      <%= render "battle_list" %>
+    </div>
+  </div>
 </div>

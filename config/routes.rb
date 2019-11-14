@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get "ac_test/", to: "ac_test#index", as: "ac_messages"
-  post "ac_test/", to: "ac_messages#create"
   resources :moves
   resources :battlefields do
     resources :battles
