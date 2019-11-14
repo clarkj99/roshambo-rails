@@ -19,7 +19,7 @@ class PlayersController < ApplicationController
       @player.save
       session[:player_id] = @player.id
       flash[:success] = "Player created successfully!"
-      redirect_to players_path
+      redirect_to root_path
     else
       # flash[:danger] = "Creation failed!"
       flash[:danger] = @player.errors.full_messages.first

@@ -76,4 +76,22 @@ class ApplicationController < ActionController::Base
   def formatted_date(date)
     date.strftime("%m/%d/%Y %I:%M:%S %p")
   end
+
+  def battle_message(battle)
+    @div = "<div class='columns box'>"
+    @div += "<div class='column has-text-centered'>"
+    @div += "#{level_icon_span(level: battle.evolution_level)}"
+    @div += "<p>#{formatted_date(battle.created_at)}</p>"
+
+    @div += "</div>"
+    @div += "<div class='column has-text-centered'>"
+    @div += "#{move_icon_span(plyr: battle.moves[0], opnt: battle.moves[1])}"
+
+    @div += "<p>#{battle.moves[0].player.display_name} </div></p>"
+    @div += "<div class='column has-text-centered'>"
+    @div += "#{move_icon_span(plyr: battle.moves[1], opnt: battle.moves[0])}"
+    @div += "<p>#{battle.moves[1].player.display_name}</p>"
+    @div += "</div>"
+    @div += "</div>"
+  end
 end

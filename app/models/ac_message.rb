@@ -1,0 +1,2 @@
+class AcMessage < ApplicationRecord
+end

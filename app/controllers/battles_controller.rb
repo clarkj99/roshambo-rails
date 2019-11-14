@@ -33,8 +33,11 @@ class BattlesController < ApplicationController
 
   def update
     @move = @battle.moves.build(symbol: battle_params[:move], player: current_player)
-    @move.save
     if @move.valid?
+      @move.save
+      # ActionCable, Yo! ----------------
+      ActionCable.server.broadcast "room_channel", content: battle_message(@battle)
+      # ActionCable, Yo! ----------------
       @winner = winning_player(@battle)
       if @winner
         @winner.current_level += 1
