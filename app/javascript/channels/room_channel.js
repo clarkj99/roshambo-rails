@@ -15,6 +15,7 @@ consumer.subscriptions.create("RoomChannel", {
     console.log("Receiving:")
     console.log(data.content)
     // $('#msg').append('<div class="message"> ' + data.content + '</div>')
+    $("#empty-bf-msg").remove()
     $('#battle-msgs').append(data.content)
   }
 });
