@@ -1,9 +1,10 @@
-<h1 class="">Create A Battlefield</h1>
+<h1 class="">Edit Battlefield</h1>
 
 <div class="box">
-<%= form_for :battlefield, class: "form",url: battlefields_path do |f| %>
+  <%= form_for :battlefield, class: "form",url: battlefield_path, method: :patch do |f| %>
+    
     <div class="field">
-      <%= f.label :username, "Name:" ,class:"label"%>
+      <%= f.label :name, "Display Name:" ,class:"label"%>
       <%= f.text_field :name, class:"input" %>
     </div>
     

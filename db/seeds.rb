@@ -10,9 +10,9 @@ p2 = Player.create(username: "Leonard", password: "pword2", current_level: 1, di
 p3 = Player.create(username: "RajK", password: "pword3", current_level: 1, display_name: "LadiesMan")
 p4 = Player.create(username: "Howard", password: "pword4", current_level: 1, display_name: "TheAstronaut")
 
-bf1 = Battlefield.create(name: "Turin")
-bf2 = Battlefield.create(name: "Borg")
-bf3 = Battlefield.create(name: "Babbage")
+bf1 = Battlefield.create(name: "Turin", creator: p1)
+bf2 = Battlefield.create(name: "Borg", creator: p2)
+bf3 = Battlefield.create(name: "Babbage", creator: p1)
 
 b1 = Battle.create(evolution_level: 0, battlefield: bf1)
 b2 = Battle.create(evolution_level: 0, battlefield: bf1)

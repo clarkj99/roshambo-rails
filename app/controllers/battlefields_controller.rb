@@ -1,7 +1,6 @@
 class BattlefieldsController < ApplicationController
-  before_action :require_login, only: [:new, :create]
-
-  before_action :find_battlefield, only: [:show, :edit, :delete, :update]
+  before_action :require_login, only: [:new, :create, :destroy]
+  before_action :find_battlefield, only: [:show, :edit, :destroy, :update]
 
   def index
     @battlefields = Battlefield.all
@@ -10,7 +9,7 @@ class BattlefieldsController < ApplicationController
 
   def show
     @battles = @battlefield.battles.select { |battle| battle.moves.count == 2 }
-    @all_challenge_battles = all_battles_in_progress
+    @all_challenge_battles = @battlefield.battles.select { |battle| battle.moves.count == 1 }
   end
 
   def new
@@ -18,7 +17,7 @@ class BattlefieldsController < ApplicationController
   end
 
   def create
-    @battlefield = Battlefield.new(battlefield_params)
+    @battlefield = current_player.created_battlefields.build(battlefield_params)
 
     if @battlefield.valid?
       @battlefield.save
@@ -45,6 +44,7 @@ class BattlefieldsController < ApplicationController
 
   def destroy
     @battlefield.destroy
+
     flash[:success] = "Battlefield destroyed!"
     redirect_to battlefields_path
   end

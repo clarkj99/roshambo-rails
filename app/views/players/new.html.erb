@@ -1,4 +1,4 @@
-<h1 class="title is-1">Create Player</h1>
+<h1 class="">Create Player</h1>
 <div class="box">
   <%= form_for :player, class: "form",url: players_path do |f| %>
     <div class="field">
@@ -17,8 +17,9 @@
       <%= f.label :password_confirmation, "Password Confirmation" ,class:"label"%>
       <%= f.password_field :password_confirmation, class:"input" %>
     </div>
-    <div class="field">
-      <%= f.submit "Submit", class:"button" %>
+    <div class="field has-text-right">
+      <%= f.submit "Submit", class:"button is-primary" %>
     </div>
   <% end %>
 </div>
+<%= link_to "Log In", login_path, class:"is-link"  %>

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_player, :symbol_color, :level_icon, :symbols_list, :formatted_date, :level_icon_span, :move_icon_span
+  helper_method :current_player, :symbol_color, :level_icon, :symbols_list, :formatted_date, :level_icon_span, :move_icon_span, :battle_message
 
   def current_player
     @current_player ||= Player.find_by(id: session[:player_id]) if session[:player_id]
@@ -33,8 +33,15 @@ class ApplicationController < ActionController::Base
 
   def winning_symbol?(s1, s2)
     if ((s1 == "rock") && (s2 == "scissors")) ||
+       ((s1 == "rock") && (s2 == "lizard")) ||
        ((s1 == "paper") && (s2 == "rock")) ||
-       ((s1 == "scissors") && (s2 == "paper"))
+       ((s1 == "paper") && (s2 == "spock")) ||
+       ((s1 == "scissors") && (s2 == "paper")) ||
+       ((s1 == "scissors") && (s2 == "lizard")) ||
+       ((s1 == "lizard") && (s2 == "paper")) ||
+       ((s1 == "lizard") && (s2 == "spock")) ||
+       ((s1 == "spock") && (s2 == "rock")) ||
+       ((s1 == "spock") && (s2 == "scissors"))
       true
     else
       false
@@ -72,7 +79,7 @@ class ApplicationController < ActionController::Base
   end
 
   def formatted_date(date)
-    date.strftime("%m/%d/%Y %I:%M:%S %p")
+    date.strftime("%m/%d/%Y %H:%M:%S")
   end
 
   def battle_message(battle)
@@ -80,11 +87,9 @@ class ApplicationController < ActionController::Base
     @div += "<div class='column has-text-centered'>"
     @div += "#{level_icon_span(level: battle.evolution_level)}"
     @div += "<p>#{formatted_date(battle.created_at)}</p>"
-
     @div += "</div>"
     @div += "<div class='column has-text-centered'>"
     @div += "#{move_icon_span(plyr: battle.moves[0], opnt: battle.moves[1])}"
-
     @div += "<p>#{battle.moves[0].player.display_name} </div></p>"
     @div += "<div class='column has-text-centered'>"
     @div += "#{move_icon_span(plyr: battle.moves[1], opnt: battle.moves[0])}"

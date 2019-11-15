@@ -6,11 +6,16 @@
   <div class="column">
     <div class="content box">
       <h2><span class="icon"><i class="fas fa-tree"></i> </span>Battlefields</h2>
+       <% if @battlefields.any? %>
       <ul>
         <% @battlefields.each do |battlefield| %>
           <li><%= link_to battlefield.name, battlefield_path(battlefield) %></li>
         <% end %>
       </ul>
+
+      <% else %>
+      <p class="is-info">No battlefields.</p>
+      <% end %>
     </div>
   </div>
   <div class="column">

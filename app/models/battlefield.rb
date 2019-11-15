@@ -1,6 +1,8 @@
 class Battlefield < ApplicationRecord
-  has_many :battles
+  has_many :battles, dependent: :destroy
+  has_many :moves, through: :battles, dependent: :destroy
   has_many :players, through: :battles
+  belongs_to :creator, class_name: "Player", foreign_key: :creator_id
   validates :name, length: { in: 4..16 }, format: { without: /\s/, message: "must contain no spaces" }, uniqueness: true, presence: true
 
   def max_level
