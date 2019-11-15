@@ -10,7 +10,7 @@
     <div class="columns">
       <% if @challenge_battle %>
         <div class="column">
-          <h3 class="title is-3">Waiting...</h3>
+          <h3 class="">Waiting...</h3>
           <p><%= formatted_date(@challenge_battle.created_at)  %></p>
           <p><%= raw move_icon_span(plyr:@challenge_battle.moves[0], opnt: @challenge_battle.moves[0]) %></p>
         </div>
