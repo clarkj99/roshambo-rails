@@ -36,7 +36,7 @@ class BattlesController < ApplicationController
     if @move.valid?
       @move.save
       # ActionCable, Yo! ----------------
-      ActionCable.server.broadcast "room_channel", content: battle_message(@battle)
+      ActionCable.server.broadcast "room_channel", content: battle_message2(@battle)
       # ActionCable, Yo! ----------------
       @winner = winning_player(@battle)
       if @winner
