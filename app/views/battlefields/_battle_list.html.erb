@@ -1,6 +1,6 @@
   <h2 class="has-text-dark"><span class="icon"><i class="fas fa-users"></i></span> Battles</h2>
   <% if @battles.any? %>
-  <div class='list box'>
+  <div id= "battle-msgs" class='list box'>
     <% @battles.each do |b| %>
       <%= raw battle_message2(b) %>
     <% end %>
