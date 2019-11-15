@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_player, :symbol_color, :level_icon, :symbols_list, :formatted_date, :level_icon_span, :move_icon_span, :battle_message
+  helper_method :current_player, :symbol_color, :level_icon, :symbols_list, :formatted_date, :level_icon_span, :move_icon_span, :battle_message, :battle_message2
 
   def current_player
     @current_player ||= Player.find_by(id: session[:player_id]) if session[:player_id]
@@ -96,5 +96,25 @@ class ApplicationController < ActionController::Base
     @div += "<p>#{battle.moves[1].player.display_name}</p>"
     @div += "</div>"
     @div += "</div>"
+  end
+
+  def battle_message2(battle)
+    @div = "<div class='list-item columns'>"
+    @div += "<div class='column has-text-centered'>"
+    @div += "#{level_icon_span(level: battle.evolution_level)}"
+    @div += "<p>#{formatted_date(battle.created_at)}</p>"
+    @div += "</div>"
+    @div += "<div class='column has-text-centered'>"
+    @div += "#{move_icon_span(plyr: battle.moves[0], opnt: battle.moves[1])}"
+    @div += "<p>#{anchor_tag(battle.moves[0].player)}</p></div>"
+    @div += "<div class='column has-text-centered'>"
+    @div += "#{move_icon_span(plyr: battle.moves[1], opnt: battle.moves[0])}"
+    @div += "<p>#{anchor_tag(battle.moves[1].player)}</p>"
+    @div += "</div>"
+    @div += "</div>"
+  end
+
+  def anchor_tag(player)
+    "<a href='#{player_path(player)}'>" + player.display_name + "</a>"
   end
 end

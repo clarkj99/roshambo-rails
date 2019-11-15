@@ -1,31 +1,30 @@
 <h1 class="">Battle!!!</h1>
 <div class="columns has-text-centered">
-  <div  class="column">
+  <div  class="column ">
     <div id="open-btl-msgs" class="box has-background-light">
       <%= render "open_list" %>
     </div>
   </div>
-  <div class="column">
-    <h2 class="">Start a Challenge</h2>
-    <div class="columns">
+  <div class="column is-half">
+    <div id="challenge" class="box has-background-light">
+      <h2 class="">Start a Challenge</h2>
       <% if @challenge_battle %>
-        <div class="column">
+        <div class="box">
           <h3 class="">Waiting...</h3>
           <p><%= formatted_date(@challenge_battle.created_at)  %></p>
           <p><%= raw move_icon_span(plyr:@challenge_battle.moves[0], opnt: @challenge_battle.moves[0]) %></p>
         </div>
       <% elsif @battles.any? %>
-        <div class="column">
-          <h3 class="">Challengers are waiting...</h3>
-        </div>
+        <p class="notification is-info">Challengers are waiting...</p>
       <% else %>
-        <% symbols_list.each do |symbol| %>
-          <div class="column">
+        <div class="content">
+          <% symbols_list.each do |symbol| %>
+          <div class="is-inline-flex" style="padding:15px;">
             <%= button_to symbol, battlefield_battles_path, method: :post, class:"button is-large is-primary", params:{move: symbol} %>
-          </div>
-        <% end  %>
+            </div>
+          <% end  %>
+        </div>
       <% end %>
     </div>
   </div>
-</div>
 </div>

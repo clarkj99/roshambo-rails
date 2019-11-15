@@ -1,8 +1,8 @@
 <h1 class=""><span class="icon"><i class="fas fa-tree"></i> </span> <%= @battlefield.name %></h1>
 <div class="content">
-  <div class="level">
-    <div class="level-item"><%= link_to "Battle Now!", battlefield_battles_path(@battlefield), class:"button is-link is-large" %></div>
-    <div class="level-item has-text-right"> <% if @battlefield.creator == current_player %>
+  <div class="columns">
+    <div class="column"><%= link_to "Battle Now!", battlefield_battles_path(@battlefield), class:"button is-link is-large" %></div>
+    <div class="column has-text-right"> <% if @battlefield.creator == current_player %>
         <%= link_to "Edit", edit_battlefield_path(@battlefield), class:"button is-primary"%>
         <%= link_to "Delete", battlefield_path(@battlefield), method: :delete, data: { confirm: "Are you sure? (This will destroy the battle field and all associated battles and moves!)" }, class: 'button is-danger' %>
       <% end %></div>
