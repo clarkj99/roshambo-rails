@@ -10,15 +10,17 @@
 </div>
 <div class="columns">
   <div class="column">
-    <div class="content box">
+    <div class="content ">
       <h2 class=""><span class="icon"><i class="fas fa-poll"></i></span> Stats</h2>
-      <p><strong>Completed Battles:</strong> <%= @battles.count %></p>
-      <p><strong>Waiting Challenges:</strong> <%= @all_challenge_battles.count %></p>
-      <p><strong>Max Level:</strong> &nbsp;&nbsp;&nbsp;<%= raw level_icon_span(level:@battlefield.max_level) %></p>
+      <div class="box">
+        <p><strong>Completed Battles:</strong> <%= @battles.count %></p>
+        <p><strong>Waiting Challenges:</strong> <%= @all_challenge_battles.count %></p>
+        <p><strong>Max Level:</strong> &nbsp;&nbsp;&nbsp;<%= raw level_icon_span(level:@battlefield.max_level) %></p>
+      </div>
     </div>
   </div>
   <div class="column">
-    <div id= "" class="box has-background-light">
+    <div id= "" class="content">
       <%= render "battle_list" %>
     </div>
   </div>

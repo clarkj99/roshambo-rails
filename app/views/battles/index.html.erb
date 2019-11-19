@@ -19,8 +19,8 @@
       <% else %>
         <div class="content">
           <% symbols_list.each do |symbol| %>
-          <div class="is-inline-flex" style="padding:15px;">
-            <%= button_to symbol, battlefield_battles_path, method: :post, class:"button is-large is-primary", params:{move: symbol} %>
+            <div class="is-inline-flex" style="padding:15px;">
+              <%= button_to symbol, battlefield_battles_path, method: :post, class:"button is-large is-primary", params:{move: symbol} %>
             </div>
           <% end  %>
         </div>

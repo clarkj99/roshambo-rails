@@ -1,12 +1,26 @@
 # Ruby on Rails Game
-
+# http://clarkj99-roshambo.herokuapp.com/
 ## Title: Roshambo Evolution
+---
+## Rules
+Progression:  Egg, Chicken, Dragon, Human, Money
 
+* Scissors cuts paper, 
+* paper covers rock, 
+* rock crushes lizard, 
+* lizard poisons Spock, 
+* Spock smashes scissors, 
+* scissors decapitates lizard, 
+* lizard eats paper, 
+* paper disproves Spock, 
+* Spock vaporizes rock, 
+* and as it always has, rock crushes scissors.
+---
 ## Components: 
 - ActionCable + JQuery
 - Bulma
 - Ruby on Rails
-
+---
 
 ## Models:
 ### Player	
@@ -72,18 +86,5 @@
 - Repeat
 
 
-## Rules
-Progression:  Egg, Chicken, Dragon, Human, Money
-
-* Scissors cuts paper, 
-* paper covers rock, 
-* rock crushes lizard, 
-* lizard poisons Spock, 
-* Spock smashes scissors, 
-* scissors decapitates lizard, 
-* lizard eats paper, 
-* paper disproves Spock, 
-* Spock vaporizes rock, 
-* and as it always has, rock crushes scissors.
 
 ￼

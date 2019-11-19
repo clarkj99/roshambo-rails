@@ -12,24 +12,26 @@
   </head>
   <body>
     <%= render 'layouts/nav' %>
-  <div class="has-text-weight-bold has-text-centered">
+    <div class="has-text-weight-bold has-text-centered">
       <% if current_player %>
         <div class="">Player: <%= link_to current_player.display_name, player_path(current_player) %></div>
       <% else %>
-      <div class="">You are not logged in.</div>
+        <div class="">You are not logged in.</div>
       <% end %>
-      </div>
-      <section class="section">
+    </div>
+
+    <section class="section">
       <%= render 'layouts/notifications' %>
+      <div class="container">
       <div class="content">
         <%= yield %>
       </div>
+      </div>
     </section>
-    <%# <footer class="footer">
-    <div class="has-text-centered is-italic">
-    <p>Developed with love for Flatiron School as Mod-2 project by Clark Johnson!</p>
-    <div>
-    </footer>  %>
-
-  </body>
-</html>
+    <footer class="footer">
+      <div class="has-text-centered is-italic">
+        <p>Made With ❤️ | Flatiron School Mod-2 Project | Clark Johnson!</p>
+        <div>
+        </footer>
+      </body>
+    </html>

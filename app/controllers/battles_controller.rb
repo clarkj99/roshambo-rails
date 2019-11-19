@@ -5,7 +5,7 @@ class BattlesController < ApplicationController
 
   def index
     @battles = @battlefield.battles.select { |battle| battle.moves.count == 1 && battle.evolution_level == current_player.current_level && battle.moves[0].player != current_player }
-    @challenge_battle = battle_in_progress
+    @challenge_battle = Battle.all.find { |battle| battle.moves.count == 1 && battle.moves[0].player == current_player && battle.battlefield == @battlefield }
   end
 
   def show
@@ -49,7 +49,7 @@ class BattlesController < ApplicationController
         end
       end
     else
-      flash[:danger] = @battle.errors.full_messages.first
+      flash[:danger] = @move.errors.full_messages.first
     end
     redirect_to battlefield_path(@battlefield)
   end
