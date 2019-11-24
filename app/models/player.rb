@@ -1,6 +1,8 @@
 class Player < ApplicationRecord
   has_many :moves
   has_many :battles, through: :moves
+  has_many :levels
+  has_many :battlefields, through: :levels
   has_many :created_battlefields, class_name: "Battlefield", foreign_key: :creator_id
 
   has_secure_password
